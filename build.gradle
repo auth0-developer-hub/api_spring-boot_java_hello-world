@@ -1,0 +1,62 @@
+buildscript {
+  configurations.classpath {
+    resolutionStrategy.activateDependencyLocking()
+  }
+}
+
+plugins {
+  id 'checkstyle'
+  id 'java'
+
+  id 'org.springframework.boot' version '2.6.1'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+
+  id 'name.remal.sonarlint' version '1.5.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_17
+
+dependencyLocking {
+  lockAllConfigurations()
+}
+
+sonarlint {
+  includes {
+    message('java:S4266') // "Stream.collect()" calls should not be redundant
+  }
+}
+
+checkstyle {
+  toolVersion = '9.1'
+}
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+ext['lombok.version'] = '1.18.22'
+ext['log4j2.version'] = '2.15.0'
+
+dependencies {
+  annotationProcessor('org.projectlombok:lombok')
+
+  compileOnly('org.projectlombok:lombok')
+
+  developmentOnly('org.springframework.boot:spring-boot-devtools')
+
+  implementation('org.springframework.boot:spring-boot-starter-web')
+
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+test {
+  useJUnitPlatform()
+}
