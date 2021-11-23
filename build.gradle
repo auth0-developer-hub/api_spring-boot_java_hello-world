@@ -54,9 +54,12 @@ dependencies {
   developmentOnly('org.springframework.boot:spring-boot-devtools')
 
   implementation('me.paulschwarz:spring-dotenv:2.4.1')
+  implementation('org.springframework.boot:spring-boot-starter-oauth2-resource-server')
+  implementation('org.springframework.boot:spring-boot-starter-security')
   implementation('org.springframework.boot:spring-boot-starter-web')
 
   testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('org.springframework.security:spring-security-test')
 }
 
 test {

@@ -8,12 +8,16 @@ To configure the application, add a `.env` file to the root of the project. No w
 
 * `PORT:`: The port number in which the API server should start.
 * `CLIENT_ORIGIN_URL`: The client origin URL (including port) that will be allowed by the CORS configuration.
+* `AUTH0_DOMAIN`: Your Auth0 domain name. It follows the pattern `tenant-name.region.auth0.com`.
+* `AUTH0_AUDIENCE`: Your Auth0 API Audience value. Also refered as the API identifier.
 
 Here's an example of how your `.env` file could look:
 
 ```sh
 PORT=6060
 CLIENT_ORIGIN_URL=http://localhost:4040
+AUTH0_DOMAIN=tenant-name.region.auth0.com
+AUTH0_AUDIENCE=https://hello-world.example.com
 ```
 
 Spring Boot does not natively provide a way of reading configuration properties from a `.env` file since all properties usually come from the `application.yml` file. We're using [me.paulschwarz:spring-dotenv](https://github.com/paulschwarz/spring-dotenv) library to bind environment variables defined in `.env` to the `application.yml` used by Spring Boot.

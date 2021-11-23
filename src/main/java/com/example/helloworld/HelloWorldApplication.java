@@ -23,6 +23,7 @@ public class HelloWorldApplication {
     final var applicationProps = context.getBean(ApplicationProperties.class);
     final var port = serverProps.getPort();
     final var clientOriginUrl = applicationProps.getClientOriginUrl();
+    final var audience = applicationProps.getAudience();
 
     if (port == null || port == 0) {
       exitWithMissingEnv(context, "PORT");
@@ -30,6 +31,10 @@ public class HelloWorldApplication {
 
     if (Objects.isNull(clientOriginUrl) || clientOriginUrl.isBlank()) {
       exitWithMissingEnv(context, "CLIENT_ORIGIN_URL");
+    }
+
+    if (Objects.isNull(audience) || audience.isEmpty()) {
+      exitWithMissingEnv(context, "AUTH0_AUDIENCE");
     }
   }
 
