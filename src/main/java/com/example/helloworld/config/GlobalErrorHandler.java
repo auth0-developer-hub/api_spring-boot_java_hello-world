@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.example.helloworld.models.ErrorMessage;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -17,6 +18,12 @@ public class GlobalErrorHandler {
   @ExceptionHandler(NoHandlerFoundException.class)
   public ErrorMessage handleNotFound(final HttpServletRequest request, final Exception error) {
     return ErrorMessage.from("Not found");
+  }
+
+  @ResponseStatus(HttpStatus.FORBIDDEN)
+  @ExceptionHandler(AccessDeniedException.class)
+  public ErrorMessage handleAccessDenied(final HttpServletRequest request, final Exception error) {
+    return ErrorMessage.from("Forbidden. %s".formatted(error.getMessage()));
   }
 
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

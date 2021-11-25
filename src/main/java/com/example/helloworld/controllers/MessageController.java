@@ -3,6 +3,7 @@ package com.example.helloworld.controllers;
 import com.example.helloworld.models.Message;
 import com.example.helloworld.services.MessageService;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,7 @@ public class MessageController {
   }
 
   @GetMapping("/admin")
+  @PreAuthorize("hasAuthority('read:admin-messages')")
   public Message getAdmin() {
     return messageService.getAdminMessage();
   }
