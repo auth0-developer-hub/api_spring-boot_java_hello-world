@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: api_spring-boot_java_hello-world_basic-authorization
+    container_name: api_spring-boot_java_hello-world_basic-authorization
+    ports:
+      - 6060:6060
