@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 public class MessageService {
 
   public Message getPublicMessage() {
-    final var text = "The API doesn't require an access token to share this message.";
+    final var text = "This is a public message.";
 
     return Message.from(text);
   }
 
   public Message getProtectedMessage() {
-    final var text = "The API successfully validated your access token.";
+    final var text = "This is a protected message.";
 
     return Message.from(text);
   }
 
   public Message getAdminMessage() {
-    final var text = "The API successfully recognized you as an admin.";
+    final var text = "This is an admin message.";
 
     return Message.from(text);
   }
