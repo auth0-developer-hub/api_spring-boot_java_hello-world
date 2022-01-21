@@ -10,10 +10,10 @@ COPY ./gradle.lockfile ./
 COPY ./gradlew ./
 COPY ./gradlew.bat ./
 COPY ./settings.gradle ./
-RUN ./gradlew dependencies
+RUN ./gradlew dependencies --no-daemon
 COPY ./config ./config
 COPY ./src ./src
-RUN ./gradlew build
+RUN ./gradlew build --no-daemon
 
 FROM gcr.io/distroless/java17-debian11@sha256:ab37242e81cbc031b2600eef4440fe87055a05c14b40686df85078cc5086c98f
 USER 1000
