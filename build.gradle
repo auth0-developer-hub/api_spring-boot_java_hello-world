@@ -15,7 +15,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = JavaVersion.VERSION_17
 
 dependencyLocking {
@@ -47,14 +47,19 @@ ext['log4j2.version'] = '2.15.0'
 
 dependencies {
   annotationProcessor('org.projectlombok:lombok')
+  annotationProcessor('org.springframework.boot:spring-boot-configuration-processor')
 
   compileOnly('org.projectlombok:lombok')
 
   developmentOnly('org.springframework.boot:spring-boot-devtools')
 
+  implementation('me.paulschwarz:spring-dotenv:2.4.1')
+  implementation('org.springframework.boot:spring-boot-starter-oauth2-resource-server')
+  implementation('org.springframework.boot:spring-boot-starter-security')
   implementation('org.springframework.boot:spring-boot-starter-web')
 
   testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('org.springframework.security:spring-security-test')
 }
 
 test {
